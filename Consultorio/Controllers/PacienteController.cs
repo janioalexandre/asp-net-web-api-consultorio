@@ -43,5 +43,51 @@ namespace Consultorio.Controllers
                     ? Ok(pacienteRetorno)
                     : BadRequest("Paciente não encontrado.");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(PacienteAdicionarDto paciente)
+        {
+            if (paciente == null) return BadRequest("Dados Inválidos");
+
+            var pacienteAdicionar = _mapper.Map<Paciente>(paciente);
+
+            _repository.Add(pacienteAdicionar);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Paciente adicionado com sucesso")
+                : BadRequest("Erro ao salvar o paciente");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id,PacienteAtualizarDto paciente)
+        {
+            if (id <= 0) return BadRequest("Paciente não informado");
+
+            var pacienteBanco = await _repository.GetPacientesByIdAsync(id);
+
+            var pacienteAtualizar = _mapper.Map(paciente, pacienteBanco);    
+
+            _repository.Update(pacienteAtualizar);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Paciente atualizado com sucesso")
+                : BadRequest("Erro ao atualizar o paciente");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest("Paciente inválido");
+
+            var pacienteExclui = await _repository.GetPacientesByIdAsync(id);
+
+            if (pacienteExclui == null) return NotFound("Paciente não encontrado");
+
+            _repository.Delete(pacienteExclui);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Paciente deletado com sucesso")
+                : BadRequest("Erro ao deletar o paciente");
+        }
     }
 }
