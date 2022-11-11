@@ -8,7 +8,8 @@ namespace Consultorio.Context
         public ConsultorioContext(DbContextOptions<ConsultorioContext> options) : base(options) {}
 
         public DbSet<Consulta> Consultas { get; set; }
-        public DbSet<Paciente> Pacientes { get; internal set; }
+        public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Profissional> Profissionais { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
