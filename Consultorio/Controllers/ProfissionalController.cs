@@ -95,46 +95,46 @@ namespace Consultorio.Controllers
                 : BadRequest("Erro ao deletar o Profissional");
         }
 
-        //[HttpPost("adicionar-profissional")]
-        //public async Task<IActionResult> PostProfissionalEspecialidade(ProfissionalEspecialidadeAdicionarDto profissional)
-        //{
-        //    int profissionalId = profissional.ProfissionalId;
-        //    int especialidadeId = profissional.EspecialidadeId;
+        [HttpPost("adicionar-especialidade")]
+        public async Task<IActionResult> PostProfissionalEspecialidade(ProfissionalEspecialidadeAdicionarDto profissional)
+        {
+            int profissionalId = profissional.ProfissionalId;
+            int especialidadeId = profissional.EspecialidadeId;
 
-        //    if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
+            if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
 
-        //    var profissionalEspecialidade = await _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
+            var profissionalEspecialidade = await _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
 
-        //    if (profissionalEspecialidade != null) return Ok("Especialidade já cadastrada");
+            if (profissionalEspecialidade != null) return Ok("Especialidade já cadastrada");
 
-        //    var especialidadeAdicionar = new ProfissionalEspecialidade
-        //    {
-        //        EspecialidadeId = especialidadeId,
-        //        ProfissionalId = profissionalId
-        //    };
+            var especialidadeAdicionar = new ProfissionalEspecialidade
+            {
+                EspecialidadeId = especialidadeId,
+                ProfissionalId = profissionalId
+            };
 
-        //    _repository.Add(especialidadeAdicionar);
+            _repository.Add(especialidadeAdicionar);
 
-        //    return await _repository.SaveChangesAsync()
-        //        ? Ok("Especialiadade adicionada")
-        //        : BadRequest("Erro ao adicionar especialidade");
-        //}
+            return await _repository.SaveChangesAsync()
+                ? Ok("Especialiadade adicionada")
+                : BadRequest("Erro ao adicionar especialidade");
+        }
 
-        //[HttpDelete("{profissionalId}/deletar-especialidade/{especialidadeId}")]
-        //public async Task<IActionResult> DeleteProfissionalEspecialidade(int profissionalId, int especialidadeId)
-        //{
-        //    if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
+        [HttpDelete("{profissionalId}/deletar-especialidade/{especialidadeId}")]
+        public async Task<IActionResult> DeleteProfissionalEspecialidade(int profissionalId, int especialidadeId)
+        {
+            if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
 
-        //    var profissionalEspecialidade = await _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
+            var profissionalEspecialidade = await _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
 
-        //    if (profissionalEspecialidade == null)
-        //        return BadRequest("Especialidade não cadastrada");
+            if (profissionalEspecialidade == null)
+                return BadRequest("Especialidade não cadastrada");
 
-        //    _repository.Delete(profissionalEspecialidade);
+            _repository.Delete(profissionalEspecialidade);
 
-        //    return await _repository.SaveChangesAsync()
-        //        ? Ok("Especialiadade deletada do profissional")
-        //        : BadRequest("Erro ao deletar especialidade do profissional");
-        //}
+            return await _repository.SaveChangesAsync()
+                ? Ok("Especialiadade deletada do profissional")
+                : BadRequest("Erro ao deletar especialidade do profissional");
+        }
     }
 }
