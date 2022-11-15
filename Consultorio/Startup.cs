@@ -33,6 +33,7 @@ namespace Consultorio
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
             services.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
+            services.AddScoped<IConsultaRepository, ConsultaRepository>();
 
             services.AddDbContext<ConsultorioContext>(options =>
             {
@@ -41,7 +42,7 @@ namespace Consultorio
             });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consultorio", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API - Liga Contra o Câncer", Version = "v1" });
             });
         }
 
