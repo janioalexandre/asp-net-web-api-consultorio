@@ -40,6 +40,8 @@ namespace Consultorio.Helpers
 
             CreateMap<Especialidade, EspecialidadeDetalhesDto>();
             CreateMap<Especialidade, EspecialidadeDto>();
+
+            CreateMap<User, UserDto>();
         }
     }
 }

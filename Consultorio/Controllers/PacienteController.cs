@@ -2,6 +2,7 @@
 using Consultorio.Models.Dtos;
 using Consultorio.Models.Entities;
 using Consultorio.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Consultorio.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PacienteController : ControllerBase

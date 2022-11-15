@@ -12,6 +12,8 @@ ASP NET WEB API - CONSULTORIO
 	Microsoft.EntityFrameworkCore.Tools
 	Microsoft.AspNetCore.Mvc.NewtonsoftJson
 	AutoMapper.Extensions.Microsoft.DependencyInjection	
+	Microsoft.IdentityModel.Tokens
+	System.IdentityModel.Tokens.Jwt
 
 ## Documentation
 	HTTP Mozilla: https://developer.mozilla.org/en-US/d...

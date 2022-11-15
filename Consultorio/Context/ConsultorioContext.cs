@@ -1,5 +1,7 @@
 ﻿using Consultorio.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Consultorio.Context
 {
@@ -12,6 +14,7 @@ namespace Consultorio.Context
         public DbSet<Profissional> Profissionais { get; set; }
         public DbSet<Especialidade> Especialidades { get; set; }
         public DbSet<ProfissionalEspecialidade> ProfissionaisEspecialidades { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
